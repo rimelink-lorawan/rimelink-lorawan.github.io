@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((d) => ({ params: { slug: d.slug } }));
+}
+
+const { slug } = Astro.params;
+const docs = await getCollection('docs');
+const doc = docs.find((d) => d.slug === slug);
+
+if (!doc) {
+  return Astro.redirect('/docs/');
+}
+
+const { Content } = await doc.render();
+const categoryLabel = doc.data.category === 'download' ? '下载' : '开源';
+---
+
+<BaseLayout title={`${doc.data.title} - 锐米 RimeLink`}>
+  <Header />
+
+  <main class="pt-8 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+      <nav class="flex items-center gap-2 text-sm text-gray-500">
+        <a href="/" class="hover:text-primary-600 transition-colors">首页</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <a href="/docs/" class="hover:text-primary-600 transition-colors">文档中心</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-gray-900 font-medium truncate">{doc.data.title}</span>
+      </nav>
+    </div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-10">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class={`text-xs font-medium px-3 py-1 rounded-full ${
+            doc.data.category === 'download' ? 'bg-blue-50 text-blue-600' : 'bg-green-50 text-green-600'
+          }`}>
+            {categoryLabel}
+          </span>
+          {doc.data.tags?.map((t: string) => (
+            <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">{t}</span>
+          ))}
+        </div>
+        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">{doc.data.title}</h1>
+        <div class="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t border-gray-100 text-sm text-gray-400">
+          <time datetime={doc.data.date.toISOString()}>
+            {doc.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          {doc.data.version && <span>版本 {doc.data.version}</span>}
+          {doc.data.platform && <span>{doc.data.platform}</span>}
+          {doc.data.license && <span>许可：{doc.data.license}</span>}
+        </div>
+      </header>
+
+      <div class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-a:text-primary-600 prose-code:bg-gray-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-pre:bg-gray-900 prose-table:border prose-td:border-gray-200 prose-th:border-gray-200 prose-th:bg-gray-50 prose-img:rounded-xl">
+        <Content />
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-gray-100">
+        <a
+          href="/docs/"
+          class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium group"
+        >
+          <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+          </svg>
+          返回文档列表
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

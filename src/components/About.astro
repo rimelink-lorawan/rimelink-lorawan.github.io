@@ -1,0 +1,77 @@
+---
+---
+
+<section id="about" class="relative py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      {/* Left - Content */}
+      <div>
+        <div class="inline-flex items-center gap-2 bg-primary-50 text-primary-700 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          公司简介
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+          关于<span class="text-primary-600">锐米</span>
+        </h2>
+
+        <p class="text-gray-600 leading-relaxed mb-6">
+          锐米的定位：一家专注于 LoRaWAN 的物联网公司。
+        </p>
+
+        <p class="text-gray-600 leading-relaxed mb-8">
+          锐米的使用：为全球提供 LoRaWAN 基础平台与服务。
+        </p>
+
+        {/* Values */}
+        <div class="grid sm:grid-cols-4 gap-3">
+          {[
+            { value: '贡献', desc: '' },
+            { value: '合作', desc: '' },
+            { value: '创新', desc: '' },
+            { value: '正直', desc: '' },
+          ].map((item) => (
+            <div class="text-center p-4 bg-gray-50 rounded-xl">
+              <div class="text-lg font-bold text-primary-700">{item.value}</div>
+              <div class="text-sm text-gray-500 mt-1">{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right - Visual */}
+      <div class="relative">
+        {/* Main card */}
+        <div class="bg-gradient-to-br from-primary-600 to-primary-800 rounded-3xl p-8 lg:p-10 text-white shadow-2xl relative overflow-hidden">
+          {/* Background pattern */}
+          <div class="absolute top-0 right-0 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-3xl"></div>
+
+          <div class="relative">
+            <h3 class="text-2xl font-bold mb-6">我们的优势</h3>
+
+            <div class="space-y-5">
+              {[
+                { icon: '🔧', title: '技术实力', text: '核心团队来自知名通信企业，拥有丰富的无线通信研发经验' },
+                { icon: '⚡', title: '产品性能', text: '超低功耗设计，1.3uA待机功耗，电池续航可达数年' },
+                { icon: '🛡️', title: '质量保障', text: '通过长期严苛测试，产品质量稳定可靠' },
+                { icon: '🤝', title: '服务支持', text: '提供完善的技术支持和售后服务，响应及时' },
+              ].map((item) => (
+                <div class="flex items-start gap-4 p-4 bg-white/10 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-colors">
+                  <span class="text-2xl shrink-0">{item.icon}</span>
+                  <div>
+                    <h4 class="font-semibold mb-1">{item.title}</h4>
+                    <p class="text-blue-200/70 text-sm">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative element */}
+        <div class="absolute -bottom-4 -right-4 w-full h-full bg-primary-200 rounded-3xl -z-10"></div>
+      </div>
+    </div>
+  </div>
+</section>

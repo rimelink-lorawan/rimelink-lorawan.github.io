@@ -1,0 +1,48 @@
+---
+// Shared layout for article detail pages
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  date: Date | string;
+  meta?: { label: string; value: string }[];
+}
+
+const { title, date, meta = [] } = Astro.props;
+const dateStr = date instanceof Date ? date.toISOString().slice(0, 10) : date;
+---
+
+<BaseLayout title={`${title} - 锐米 RimeLink`}>
+  <Header />
+  <main class="min-h-screen bg-gray-50">
+    {/* Article header */}
+    <section class="bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 py-12 lg:py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="javascript:history.back()" class="inline-flex items-center gap-2 text-blue-300 hover:text-white text-sm mb-6 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          返回
+        </a>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">{title}</h1>
+        <div class="flex flex-wrap items-center gap-4 text-sm">
+          <time class="text-blue-200">{dateStr}</time>
+          {meta.map((m) => (
+            <span class="flex items-center gap-1 text-blue-200/70">
+              <span class="text-blue-200/40">{m.label}：</span>
+              {m.value}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Article body */}
+    <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <article class="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 lg:p-10 shadow-sm prose prose-slate max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-primary-600 prose-img:rounded-xl prose-pre:bg-slate-900">
+        <slot />
+      </article>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('cases');
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<ArticleLayout
+  title={item.data.title}
+  date={item.data.date}
+  meta={[
+    item.data.industry && { label: '行业', value: item.data.industry },
+    item.data.client && { label: '客户', value: item.data.client },
+    item.data.tags?.length && { label: '标签', value: item.data.tags.join(' · ') },
+  ].filter(Boolean) as { label: string; value: string }[]}
+>
+  <Content />
+</ArticleLayout>
+
+<style is:global>
+  article h1 { font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 1rem; }
+  article h2 { font-size: 1.25rem; font-weight: 700; color: #111827; margin-top: 2rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+  article h3 { font-size: 1.1rem; font-weight: 600; color: #1f2937; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  article p { line-height: 1.75; color: #4b5563; margin-bottom: 1rem; }
+  article ul, article ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+  article li { line-height: 1.75; color: #4b5563; }
+  article strong { color: #111827; }
+  article a { color: #1e6fdb; text-decoration: underline; }
+  article code { background: #f3f4f6; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.875em; color: #d946ef; }
+  article pre { background: #1f2937; color: #e5e7eb; padding: 1rem 1.25rem; border-radius: 0.75rem; overflow-x: auto; margin-bottom: 1rem; }
+  article pre code { background: transparent; color: inherit; padding: 0; }
+  article table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+  article th { text-align: left; padding: 0.5rem 0.75rem; background: #f9fafb; font-weight: 600; color: #374151; font-size: 0.875rem; border-bottom: 2px solid #e5e7eb; }
+  article td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #f3f4f6; color: #4b5563; font-size: 0.875rem; }
+  article blockquote { border-left: 3px solid #1e6fdb; padding-left: 1rem; color: #6b7280; font-style: italic; margin: 1rem 0; }
+  article hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+</style>

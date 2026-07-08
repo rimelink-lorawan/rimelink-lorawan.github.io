@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import ListLayout from '../../layouts/ListLayout.astro';
+
+const items = await getCollection('cases');
+items.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Industry → emoji mapping (mirrors Scenarios)
+const industryEmoji: Record<string, string> = {
+  '智慧农业': '🌱',
+  '空气质量监测': '🌬️',
+  '畜牧业定位': '🐄',
+  '工程设备管理': '🚜',
+  '智能制造': '⚙️',
+  '液体泄露监测': '💧',
+  '智能仓储': '📦',
+  '精细农业': '🌾',
+  '水管监测': '🔧',
+};
+---
+
+<ListLayout title="成功案例" subtitle="锐米 LoRaWAN 解决方案在各行业的成功应用实践" badge="成功案例">
+  <div class="grid gap-4">
+    {items.map((item) => {
+      const emoji = item.data.emoji || (item.data.industry ? industryEmoji[item.data.industry] : undefined);
+      return (
+        <a
+          href={`/cases/${item.slug}/`}
+          class="group block bg-white rounded-xl border border-slate-100 p-5 lg:p-6 hover:shadow-md hover:border-slate-200 transition-all duration-300"
+        >
+          <div class="flex items-center gap-4">
+            {/* Icon — emoji, or fallback to first char of title */}
+            {emoji ? (
+              <div class="shrink-0 w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
+                {emoji}
+              </div>
+            ) : (
+              <div class="shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center text-lg font-bold group-hover:scale-110 transition-transform duration-300">
+                {item.data.title.charAt(0)}
+              </div>
+            )}
+
+            {/* Content */}
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <h2 class="text-base font-semibold text-gray-900 group-hover:text-primary-600 transition-colors truncate">
+                  {item.data.title}
+                </h2>
+                {item.data.industry && (
+                  <span class="shrink-0 inline-flex items-center gap-1 px-2 py-0.5 bg-primary-50 text-primary-700 rounded-full text-xs font-medium">
+                    {item.data.industry}
+                  </span>
+                )}
+              </div>
+              <div class="flex items-center gap-3 text-xs text-gray-400">
+                {item.data.client && <span>{item.data.client}</span>}
+                {item.data.client && <span class="text-gray-200">|</span>}
+                <time>{item.data.date.toISOString().slice(0, 10)}</time>
+              </div>
+            </div>
+
+            {/* Tags + Arrow */}
+            <div class="hidden sm:flex items-center gap-3 shrink-0">
+              {item.data.tags?.slice(0, 2).map((tag: string) => (
+                <span class="text-xs text-gray-400 bg-slate-50 px-2 py-0.5 rounded">{tag}</span>
+              ))}
+              <svg class="w-4 h-4 text-gray-300 group-hover:text-primary-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+
+  {items.length === 0 && (
+    <div class="text-center py-20 text-gray-400">
+      <p class="text-lg">暂无成功案例</p>
+    </div>
+  )}
+</ListLayout>

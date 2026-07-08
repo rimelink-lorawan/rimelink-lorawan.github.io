@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const allDocs = await getCollection('docs');
+const docs = allDocs.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categoryLabel = (cat: string) => cat === 'download' ? '下载' : '开源';
+const categoryColor = (cat: string) => cat === 'download' ? 'bg-blue-50 text-blue-600' : 'bg-green-50 text-green-600';
+---
+
+<BaseLayout title="文档中心 - 锐米 RimeLink">
+  <Header />
+
+  <main class="pt-8 pb-20">
+    {/* Page header */}
+    <section class="bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 text-sm mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            文档中心
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">下载 & 开源资源</h1>
+          <p class="text-lg text-white/80 leading-relaxed">
+            软件工具下载、开源项目文档、SDK 与协议栈参考。共 {docs.length} 篇文档。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Doc list */}
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+      <div class="grid gap-4">
+        {docs.map((doc) => {
+          const cat = doc.data.category;
+          return (
+            <a
+              href={`/docs/${doc.slug}/`}
+              class="group bg-white rounded-2xl border border-gray-100 p-5 lg:p-6 hover:shadow-lg hover:border-primary-200 transition-all duration-300 flex items-center gap-5"
+            >
+              {/* Category badge */}
+              <span class={`shrink-0 text-xs font-medium px-2.5 py-1 rounded-full ${categoryColor(cat)}`}>
+                {categoryLabel(cat)}
+              </span>
+
+              {/* Content */}
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors truncate">
+                  {doc.data.title}
+                </h3>
+                <div class="flex items-center gap-3 text-xs text-gray-400">
+                  {doc.data.version && <span>v{doc.data.version}</span>}
+                  {doc.data.platform && <span>{doc.data.platform}</span>}
+                  {doc.data.license && <span>{doc.data.license}</span>}
+                  <time datetime={doc.data.date.toISOString()}>
+                    {doc.data.date.toLocaleDateString('zh-CN')}
+                  </time>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <svg class="w-5 h-5 text-gray-300 group-hover:text-primary-500 group-hover:translate-x-1 transition-all shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

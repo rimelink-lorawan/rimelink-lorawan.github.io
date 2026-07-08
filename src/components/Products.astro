@@ -1,0 +1,98 @@
+---
+const products = [
+  {
+    name: 'LoRaWAN室外网关',
+    subtitle: '8通道 · 覆盖10-15km',
+    description: '工业级室外网关，IP67防护，支持多通道并发通信',
+    image: '/images/product-gateway.png',
+    tag: '热销',
+    slug: 'outdoor-gateway',
+  },
+  {
+    name: 'LoRaWAN模组',
+    subtitle: '1.3μA超低功耗',
+    description: '超低功耗LoRaWAN模组，适用于电池供电的物联网设备',
+    image: '/images/product-module.png',
+    tag: '热销',
+    slug: 'module',
+  },
+  {
+    name: 'LoRaWAN开发板',
+    subtitle: '开源设计 · 即插即用',
+    description: '开源硬件开发板，快速原型设计与验证',
+    image: '/images/product-devkit.png',
+    tag: '开源',
+    slug: 'devkit',
+  },
+];
+---
+
+<section id="products" class="relative py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 bg-primary-50 text-primary-700 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        锐米产品
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        全系列 LoRaWAN 产品
+      </h2>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        从底层模组到上层应用，提供端到端的物联网解决方案，满足不同场景需求
+      </p>
+    </div>
+
+    <!-- Product grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {products.map((product, index) => (
+        <a
+          href={`/products/${product.slug}/`}
+          class="group relative bg-white rounded-2xl border border-gray-100 p-6 lg:p-8 hover:shadow-xl hover:shadow-primary-100/50 hover:border-primary-200 transition-all duration-300 hover:-translate-y-1"
+        >
+          {/* Tag */}
+          {product.tag && (
+            <span class={`absolute top-4 right-4 text-xs font-medium px-2.5 py-1 rounded-full ${
+              product.tag === '热销' ? 'bg-red-50 text-red-600' :
+              product.tag === '新品' ? 'bg-green-50 text-green-600' :
+              'bg-blue-50 text-blue-600'
+            }`}>
+              {product.tag}
+            </span>
+          )}
+
+          {/* Product Image */}
+          <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-50 mb-6 group-hover:scale-[1.02] transition-transform duration-300">
+            <img src={product.image} alt={product.name} class="w-full h-full object-contain p-3" loading="lazy" />
+          </div>
+
+          {/* Content */}
+          <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-700">{product.name}</h3>
+          <p class="text-sm font-medium text-primary-600 mb-3">{product.subtitle}</p>
+          <p class="text-gray-500 text-sm leading-relaxed">{product.description}</p>
+
+          {/* Arrow */}
+          <div class="mt-4 flex items-center gap-1 text-primary-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            查看详情
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- View all link -->
+    <div class="text-center mt-12">
+      <a href="/products/" class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold group">
+        查看全部产品
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom diagonal transition to next section -->
+  <div class="absolute bottom-0 left-0 right-0 h-16 lg:h-24 overflow-hidden pointer-events-none">
+    <svg class="absolute bottom-0 w-full h-full" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,100 1440,0 1440,100" fill="#f8fafc" />
+    </svg>
+  </div>
+</section>

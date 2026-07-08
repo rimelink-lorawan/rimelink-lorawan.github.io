@@ -1,0 +1,72 @@
+---
+---
+
+<section id="open-source" class="py-20 lg:py-28 bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden">
+  {/* Background decoration */}
+  <div class="absolute inset-0 opacity-10">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="cloud-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.3)" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#cloud-grid)" />
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    {/* Section header */}
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full px-4 py-1.5 text-sm font-medium mb-4 border border-white/10">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+        LoRaWAN 云平台
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        一站式物联网云平台
+      </h2>
+      <p class="text-lg text-blue-200/70 leading-relaxed">
+        设备管理、数据可视化、告警通知、OTA升级，全生命周期管理您的IoT设备
+      </p>
+    </div>
+
+    {/* Features grid */}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {[
+        { icon: 'device', title: '设备管理', desc: '批量注册、分组管理、状态监控' },
+        { icon: 'chart', title: '数据可视化', desc: '实时数据展示、历史趋势分析' },
+        { icon: 'alert', title: '智能告警', desc: '多渠道告警、规则引擎配置' },
+        { icon: 'update', title: 'OTA升级', desc: '远程固件升级、版本管理' },
+      ].map((feature) => (
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent-500/30 transition-colors">
+            {feature.icon === 'device' && (
+              <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+            )}
+            {feature.icon === 'chart' && (
+              <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            )}
+            {feature.icon === 'alert' && (
+              <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            )}
+            {feature.icon === 'update' && (
+              <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            )}
+          </div>
+          <h3 class="text-white font-semibold mb-2">{feature.title}</h3>
+          <p class="text-blue-200/60 text-sm">{feature.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* CTA */}
+    <div class="text-center">
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 bg-white text-primary-700 px-8 py-3.5 rounded-full font-semibold hover:bg-blue-50 shadow-xl hover:shadow-2xl transition-all"
+      >
+        访问云平台
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

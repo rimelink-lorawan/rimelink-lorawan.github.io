@@ -1,0 +1,80 @@
+---
+const scenarios = [
+  { title: '智慧农业', desc: '土壤监测、智能灌溉、温室环境监控', emoji: '🌱' },
+  { title: '空气质量监测', desc: 'PM2.5/PM10 监测、污染源追踪预警', emoji: '🌬️' },
+  { title: '畜牧定位', desc: '牲畜实时定位、电子围栏、行为分析', emoji: '🐄' },
+  { title: '工程设备管理', desc: '施工机械状态监控、工时统计、防盗管理', emoji: '🚜' },
+  { title: '智能制造', desc: '产线设备监控、能耗数据采集、预测性维护', emoji: '⚙️' },
+  { title: '液体泄露监测', desc: '管道泄漏检测、油罐液位监测、异常报警', emoji: '💧' },
+  { title: '智能仓储', desc: '货物出入库管理、环境温湿度、资产盘点', emoji: '📦' },
+  { title: '精细农业', desc: '作物生长监测、水肥一体化、病虫害预警', emoji: '🌾' },
+  { title: '水管监测', desc: '管网压力监测、漏水检测、用水量计量', emoji: '🔧' },
+];
+
+const cardColors = [
+  ['from-green-700', 'to-green-900'],
+  ['from-gray-500', 'to-gray-800'],
+  ['from-emerald-500', 'to-emerald-800'],
+  ['from-yellow-600', 'to-amber-800'],
+  ['from-blue-600', 'to-indigo-800'],
+  ['from-orange-600', 'to-red-800'],
+  ['from-stone-400', 'to-stone-600'],
+  ['from-lime-600', 'to-green-800'],
+  ['from-slate-600', 'to-slate-800'],
+];
+---
+
+<section id="cases" class="relative py-20 lg:py-28 bg-slate-50 overflow-hidden">
+  <!-- Subtle background texture -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 20% 30%, #1e40af 1px, transparent 1px), radial-gradient(circle at 80% 70%, #1e40af 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 bg-white text-primary-700 rounded-full px-4 py-1.5 text-sm font-medium mb-4 shadow-sm border border-slate-100">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        应用案例
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">应用场景</h2>
+      <p class="text-lg text-slate-500 leading-relaxed">
+        锐米 LoRaWAN 技术已成功应用于多个行业领域，助力数字化转型
+      </p>
+    </div>
+
+    <!-- 3x3 Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
+      {scenarios.map((scenario, i) => (
+        <a
+          href="/cases/"
+          class={`group relative overflow-hidden rounded-xl aspect-[16/11] bg-gradient-to-br ${cardColors[i][0]} ${cardColors[i][1]} shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer block`}
+        >
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-[3.5rem] sm:text-[4.5rem] opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 drop-shadow-md">{scenario.emoji}</span>
+          </div>
+
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent pt-10 pb-3 px-4">
+            <h3 class="text-white font-bold text-sm sm:text-base leading-tight">{scenario.title}</h3>
+            <p class="text-white/60 text-xs mt-0.5 line-clamp-1">{scenario.desc}</p>
+          </div>
+
+          <div class="absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/30 transition-colors rounded-xl"></div>
+        </a>
+      ))}
+    </div>
+
+    <!-- View all link -->
+    <div class="text-center mt-12">
+      <a href="/cases/" class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold group bg-white/80 px-5 py-2.5 rounded-full shadow-sm border border-slate-100 hover:shadow-md transition-all">
+        查看全部案例
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom wave transition to About -->
+  <div class="absolute bottom-0 left-0 right-0 pointer-events-none">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+      <path d="M0 80L60 70C120 60 240 40 360 33.3C480 26.7 600 33.3 720 40C840 46.7 960 53.3 1080 53.3C1200 53.3 1320 46.7 1380 43.3L1440 40V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z" fill="white"/>
+    </svg>
+  </div>
+</section>
