@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://rimelink-lorawan.github.io',
+  site: 'https://www.rimelink.com',
   base: '/',
 });
