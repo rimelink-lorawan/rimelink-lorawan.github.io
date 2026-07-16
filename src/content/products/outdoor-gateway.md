@@ -1,12 +1,15 @@
 ---
 title: LoRaWAN 室外网关
-date: 2024-06-01
+date: 2026-06-01
 subtitle: "8 通道并发"
 tag: "热销"
 image: "/images/product-gateway.png"
 tags: ["网关", "室外", "工业级"]
 ---
 
+### 采购链接
+
+https://item.taobao.com/item.htm?id=559152286301
 
 ### 产品特点
 

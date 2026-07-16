@@ -7,6 +7,9 @@ image: "/images/product-module.png"
 tags: ["模组", "低功耗", "嵌入式"]
 ---
 
+### 采购链接
+
+https://item.taobao.com/item.htm?id=674329196058
 
 ### 产品特点
 

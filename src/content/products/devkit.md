@@ -1,11 +1,15 @@
 ---
 title: LoRaWAN 开发板
-date: 2024-04-20
+date: 2025-04-20
 subtitle: "开源设计 · 即插即用"
 tag: "开源"
 image: "/images/product-devkit.png"
 tags: ["开发板", "开源硬件", "原型验证"]
 ---
+
+### 采购链接
+
+https://item.taobao.com/item.htm?id=674329196058
 
 ### 产品特点
 
