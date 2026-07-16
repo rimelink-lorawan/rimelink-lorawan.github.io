@@ -9,7 +9,7 @@ tags: ["开发板", "开源硬件", "原型验证"]
 
 ### 采购链接
 
-https://item.taobao.com/item.htm?id=674329196058
+https://item.taobao.com/item.htm?id=531517677682
 
 ### 产品特点
 
