@@ -9,12 +9,12 @@ const products = [
     slug: 'outdoor-gateway',
   },
   {
-    name: 'LoRaWAN模组',
-    subtitle: '1.3μA超低功耗',
-    description: '超低功耗LoRaWAN模组，适用于电池供电的物联网设备',
-    image: '/images/product-module.png',
+    name: 'LoRaWAN室内网关',
+    subtitle: '8通道 · 成熟易用',
+    description: '工业级 ARM 平台，高效稳定',
+    image: '/images/product-indoor.png',
     tag: '热销',
-    slug: 'module',
+    slug: 'indoor-gateway',
   },
   {
     name: 'LoRaWAN开发板',
@@ -23,6 +23,14 @@ const products = [
     image: '/images/product-devkit.png',
     tag: '开源',
     slug: 'devkit',
+  },
+  {
+    name: 'LoRaWAN模组',
+    subtitle: '1.3μA超低功耗',
+    description: '超低功耗LoRaWAN模组，适用于电池供电的物联网设备',
+    image: '/images/product-module.png',
+    tag: '热销',
+    slug: 'module',
   },
 ];
 ---
@@ -44,7 +52,7 @@ const products = [
     </div>
 
     <!-- Product grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
       {products.map((product, index) => (
         <a
           href={`/products/${product.slug}/`}
